@@ -1,0 +1,162 @@
+/*
+ * Copyright sovity GmbH and/or licensed to sovity GmbH under one or
+ * more contributor license agreements. You may not use this file except
+ * in compliance with the "Elastic License 2.0".
+ *
+ * SPDX-License-Identifier: Elastic-2.0
+ */
+
+import {type TableFilterParams} from '@/components/data-table';
+import {filterNonNull} from './utils/array-utils';
+
+export const queryKeys = {
+  config: {
+    key: () => ['config'],
+  },
+  dashboard: {
+    key: () => ['dashboard'],
+  },
+  transferHistory: {
+    key: () => ['transferHistory'],
+  },
+  dataOffers: {
+    key: () => ['dataOffers'],
+    all: () => [...queryKeys.dataOffers.key(), 'all'],
+    id: (dataOfferId: string) => [...queryKeys.dataOffers.key(), dataOfferId],
+    publish: () => [...queryKeys.dataOffers.key(), 'publish'],
+
+    listPage: () => [...queryKeys.dataOffers.all(), 'listPage'],
+
+    detailPage: (dataOfferId: string) => [
+      ...queryKeys.dataOffers.id(dataOfferId),
+      dataOfferId,
+    ],
+  },
+  contracts: {
+    key: () => ['contracts'],
+    id: (contractId: string) => [...queryKeys.contracts.key(), contractId],
+    all: () => [...queryKeys.contracts.key(), 'all'],
+
+    contractsPage: (params: TableFilterParams) => [
+      ...queryKeys.contracts.all(),
+      'contractsPage',
+      ...buildTableFilterKey(params),
+    ],
+
+    detailPage: (contractId: string) => [
+      ...queryKeys.contracts.id(contractId),
+      'detailPage',
+    ],
+  },
+  policies: {
+    key: () => ['policies'],
+    all: () => [...queryKeys.policies.key(), 'all'],
+    id: (policyDefinitionId: string) => [
+      ...queryKeys.policies.key(),
+      policyDefinitionId,
+    ],
+
+    listPage: () => [...queryKeys.policies.all(), 'listPage'],
+  },
+  assets: {
+    key: () => ['assets'],
+    all: () => [...queryKeys.assets.key(), 'all'],
+    id: (assetId: string) => [...queryKeys.assets.key(), assetId],
+
+    assetsPage: (params: TableFilterParams) => [
+      ...queryKeys.assets.all(),
+      'assetsPage',
+      ...buildTableFilterKey(params),
+    ],
+    detailPage: (assetId: string) => [
+      ...queryKeys.assets.id(assetId),
+      'detailPage',
+    ],
+  },
+  vaultSecrets: {
+    key: () => ['vaultSecrets'],
+    all: () => [...queryKeys.vaultSecrets.key(), 'all'],
+    id: (key: string) => [...queryKeys.vaultSecrets.key(), key],
+
+    listPage: (query?: string, limit?: number) =>
+      filterNonNull([
+        ...queryKeys.vaultSecrets.all(),
+        'listPage',
+        query,
+        limit,
+      ]),
+    editPage: (key: string) => [...queryKeys.vaultSecrets.id(key), 'editPage'],
+  },
+  businessPartnerGroups: {
+    key: () => ['businessPartnerGroups'],
+    all: () => [...queryKeys.businessPartnerGroups.key(), 'all'],
+    id: (groupId: string) => [
+      ...queryKeys.businessPartnerGroups.key(),
+      groupId,
+    ],
+
+    listPage: (query?: string, limit?: number) =>
+      filterNonNull([
+        ...queryKeys.businessPartnerGroups.all(),
+        'listPage',
+        query,
+        limit,
+      ]),
+    editPage: (groupId: string) => [
+      ...queryKeys.businessPartnerGroups.id(groupId),
+      'editPage',
+    ],
+  },
+  contractNegotiation: {
+    key: () => ['contractNegotiation'],
+  },
+  catalog: {
+    key: () => ['catalog'],
+    id: (participantId: string, endpointUrl: string) => [
+      ...queryKeys.catalog.key(),
+      participantId,
+      endpointUrl,
+    ],
+    dataOffer: (
+      participantId: string,
+      endpointUrl: string,
+      assetId: string,
+    ) => [...queryKeys.catalog.id(participantId, endpointUrl), assetId],
+
+    browserPage: () => [...queryKeys.catalog.key(), 'browserPage'],
+    listPage: (participantId: string, endpointUrl: string) => [
+      ...queryKeys.catalog.id(participantId, endpointUrl),
+      'listPage',
+    ],
+    dataOfferDetails: (
+      participantId: string,
+      endpointUrl: string,
+      assetId: string,
+    ) => [
+      ...queryKeys.catalog.dataOffer(participantId, endpointUrl, assetId),
+      'dataOfferDetails',
+    ],
+  },
+};
+
+const buildTableFilterKey = ({
+  searchText: query,
+  pageOneBased,
+  pageSize,
+  sorting,
+}: TableFilterParams) => {
+  const tableFilterKey = [];
+  if (query) {
+    tableFilterKey.push('query', query);
+  }
+  if (pageOneBased !== undefined) {
+    tableFilterKey.push('page', pageOneBased);
+  }
+  if (pageSize !== undefined) {
+    tableFilterKey.push('pageSize', pageSize);
+  }
+  if (sorting && sorting.length > 0) {
+    tableFilterKey.push('sorting', ...sorting.map((s) => `${s.id}:${s.desc}`));
+  }
+  return tableFilterKey;
+};

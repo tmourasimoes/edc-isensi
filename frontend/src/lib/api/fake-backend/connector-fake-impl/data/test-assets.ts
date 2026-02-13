@@ -1,0 +1,250 @@
+/*
+ * Copyright sovity GmbH and/or licensed to sovity GmbH under one or
+ * more contributor license agreements. You may not use this file except
+ * in compliance with the "Elastic License 2.0".
+ *
+ * SPDX-License-Identifier: Elastic-2.0
+ */
+import {type UiAsset} from '@sovity.de/edc-client';
+
+export namespace TestAssets {
+  const markdownDescription = `Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+  tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
+  vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
+  no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
+  ![scenery2](https://images.pexels.com/photos/255419/pexels-photo-255419.jpeg?cs=srgb&dl=pexels-pixabay-255419.jpg&fm=jpg)
+
+  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+  tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
+  vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
+
+  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+  tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
+  vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
+
+  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+  tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
+  vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
+
+  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+  tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
+  vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
+
+ ![scenery](https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTA1L3NrOTc5MS1pbWFnZS1rd3Z1amE5Ni5qcGc.jpg) Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
+
+
+
+
+  # Omen
+
+  This is **bold!** This is _italic_. This is inline \`code\`.
+
+  > here we quote
+
+  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+  tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
+  vero eos et accusam et justo duo dolores et ea rebum.
+
+  ## Sage
+
+  - list item 1
+  - list item 2
+
+  ### Raze
+
+  1. list item 1
+  2. list item 2
+
+  #### Cypher
+
+  \`\`\`javascript
+  alert(1);
+  \`\`\`
+
+  ##### Jett
+
+  [Sovity Website](https://sovity.de/)
+
+  **Table**
+| Item              | In Stock | Price | Description |
+| :---------------- | :------: | ----: | :---------- |
+| Python Hat        |   True   | 24.99 | This is a long description to test the scrolling behavior of the table. This is a long description to test the scrolling behavior of the table. |
+| SQL Hat           |   True   | 24.99 | This is a long description to test the scrolling behavior of the table. This is a long description to test the scrolling behavior of the table. |
+| Codecademy Tee    |  False   | 20.99 | This is a long description to test the scrolling behavior of the table. This is a long description to test the scrolling behavior of the table. |
+| Codecademy Hoodie |  False   | 43.99 | This is a long description to test the scrolling behavior of the table. This is a long description to test the scrolling behavior of the table. |
+`;
+
+  const shortMarkdownDescription = `# Short Description
+
+This is a short description text that should be fully rendered without being **collapsed**. No *show more* button should be visible.
+`;
+
+  export const assetWithCustomProperties: UiAsset = {
+    dataSourceAvailability: 'LIVE',
+    assetId: 'asset-with-custom-properties',
+    title: 'Asset with Custom Properties',
+    description: 'Asset with Custom Properties',
+    descriptionShortText: 'Asset with Custom Properties',
+    connectorEndpoint: 'https://my-connector/api/v1/dsp',
+    participantId: 'BPNL1234XX.C1234XX',
+    creatorOrganizationName: 'My Org',
+    isOwnConnector: false,
+    customJsonLdAsString: '{"http://custom.json.test/LD":"https://google.com"}',
+    customJsonAsString: '{"testKey":"testValue"}',
+    privateCustomJsonLdAsString:
+      '{"http://custom.json.test/LD/private":"https://google.com/private"}',
+    privateCustomJsonAsString: '{"privateTestKey":"testValue"}',
+  };
+
+  export const onRequestAsset: UiAsset = {
+    dataSourceAvailability: 'ON_REQUEST',
+    assetId: 'part-names-july-2024',
+    title: 'Part Names July 2024',
+    description: 'Example "On Request" data Offer',
+    descriptionShortText: 'Example "On Request" data Offer',
+    connectorEndpoint: 'https://my-other-connector/api/v1/dsp',
+    participantId: 'BPNL1234XX.C1234XX',
+    creatorOrganizationName: 'my-org',
+    temporalCoverageFrom: new Date('2024-01-01'),
+    onRequestContactEmail: 'contact@my-org.mail',
+    onRequestContactEmailSubject: "Data Offer 'Part Names July 2024'",
+    version: 'July 2024',
+    keywords: ['automotive', 'partnumber', 'part names'],
+    isOwnConnector: false,
+  };
+
+  export const boring: UiAsset = {
+    dataSourceAvailability: 'LIVE',
+    assetId: 'data-sample-ckd-skd-demands-2023-Jan',
+    title: 'data-sample-ckd-skd-demands-2023-Jan',
+    description: '',
+    descriptionShortText: '',
+    connectorEndpoint: 'https://my-other-connector/api/v1/dsp',
+    participantId: 'BPNL1234XX.C1234XX',
+    creatorOrganizationName: 'my-other-connector',
+    temporalCoverageFrom: new Date('2024-01-01'),
+    isOwnConnector: false,
+  };
+
+  export const short: UiAsset = {
+    dataSourceAvailability: 'LIVE',
+    assetId: 'data-sample-ckd-skd-demands-2023-Feb',
+    title: 'data-sample-ckd-skd-demands-2023-Feb',
+    connectorEndpoint: 'https://my-other-connector/api/v1/dsp',
+    participantId: 'BPNL1234XX.C1235XX',
+    creatorOrganizationName: 'my-other-connector',
+    description: shortMarkdownDescription,
+    descriptionShortText:
+      'Short Description This is a short description text that should be fully rendered without being collapsed. No show more button should be visible.',
+    isOwnConnector: true,
+  };
+
+  export const full: UiAsset = {
+    dataSourceAvailability: 'LIVE',
+    assetId: 'ckd-skd-demands-2023-Jan',
+    title: 'CKD / SKD Demands January 2023',
+    connectorEndpoint: 'https://my-other-connector/api/v1/dsp',
+    participantId: 'BPNL1234XX.C1236XX',
+    version: '2023-A-Program',
+    creatorOrganizationName: 'My-German-OEM',
+    keywords: ['automotive', 'part-demands', '2023', 'January'],
+    mediaType: 'application/json',
+    description: markdownDescription,
+    descriptionShortText:
+      'Part demands for CKD/SKD parts January 2023 Split by plant / day / model code. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.',
+    isOwnConnector: false,
+    language: 'https://w3id.org/idsa/code/EN',
+    publisherHomepage:
+      'https://teamabc.departmentxyz.my-german-oem.de/offers/ckd-skd-demands',
+    licenseUrl:
+      'https://teamabc.departmentxyz.my-german-oem.de/offers/ckd-skd-demands#license',
+    landingPageUrl:
+      'https://teamabc.departmentxyz.my-german-oem.de/offers/ckd-skd-demands#documentation',
+    dataModel: 'unspecified',
+    sovereignLegalName: 'Data Owning Company GmbH',
+    dataSampleUrls: [
+      'https://teamabc.departmentxyz.sample/a',
+      'https://teamabc.departmentxyz.sample/b',
+      'https://teamabc.departmentxyz.sample/c',
+      'https://teamabc.departmentxyz.sample/d',
+      'https://teamabc.departmentxyz.sample/e',
+    ],
+    referenceFileUrls: [
+      'https://teamabc.departmentxyz.reference/a',
+      'https://teamabc.departmentxyz.reference/b',
+      'https://teamabc.departmentxyz.reference/c',
+      'https://teamabc.departmentxyz.reference/d',
+      'https://teamabc.departmentxyz.reference/e',
+      'https://teamabc.departmentxyz.reference/f',
+      'https://teamabc.departmentxyz.reference/g',
+      'https://teamabc.departmentxyz.reference/h',
+      'https://teamabc.departmentxyz.reference/i',
+      'https://teamabc.departmentxyz.reference/j',
+      'https://teamabc.departmentxyz.reference/k',
+      'https://teamabc.departmentxyz.reference/l',
+      'https://teamabc.departmentxyz.reference/m',
+      'https://teamabc.departmentxyz.reference/n',
+      'https://teamabc.departmentxyz.reference/o',
+      'https://teamabc.departmentxyz.reference/p',
+      'https://teamabc.departmentxyz.reference/q',
+      'https://teamabc.departmentxyz.reference/r',
+      'https://teamabc.departmentxyz.reference/s',
+    ],
+    referenceFilesDescription: 'This reference file is important',
+    conditionsForUse:
+      'If you use the dataset please cite it in your work and give attribution',
+    dataUpdateFrequency: 'every month',
+    temporalCoverageFrom: new Date('2024-01-01'),
+    temporalCoverageToInclusive: new Date('2024-01-24'),
+    sphinxFields: {
+      patientCount: '5000',
+      birthYearMin: '1990',
+      birthYearMax: '2000',
+      administrativeGender: 'Male',
+      bodyHeightMin: '150',
+      bodyHeightMax: '210',
+      diagnosisPrimary: 'G30 - Alzheimer disease',
+      diagnosisSecondary: 'I11 - Hypertensive heart disease',
+      encounterStart: '2020',
+      encounterEnd: '2025',
+      medicationCount: '950',
+      dosageCount: '930',
+      clinicalSpecialty: 'Neurology',
+    },
+    httpDatasourceHintsProxyQueryParams: true,
+    httpDatasourceHintsProxyPath: true,
+    httpDatasourceHintsProxyMethod: true,
+    httpDatasourceHintsProxyBody: true,
+    customJsonAsString: '{"useCase": "my-use-case"}',
+    customJsonLdAsString:
+      '{"http://purl.org/dc/terms/type":{"@id":"https://w3id.org/catenax/taxonomy#Submodel"},"https://admin-shell.io/aas/3/0/HasSemantics/semanticId":{"@id":"urn:samm:io.catenax.business_partner_certificate:3.0.0#BusinessPartnerCertificate"},"https://w3id.org/catenax/ontology/common#version":"3.0"}',
+    privateCustomJsonAsString: '{ "internalId": "my-internal-id-123"}',
+    privateCustomJsonLdAsString:
+      '{ "http://unknown/internal-id": "my-internal-id-123"}',
+  };
+
+  export const dummyAsset = (id: number): UiAsset => ({
+    dataSourceAvailability: 'LIVE',
+    assetId: `dummy-asset-${id}`,
+    title: `Dummy Asset ${id}`,
+    description: `This is a dummy asset with id ${id}.`,
+    descriptionShortText: `Dummy Asset ${id}`,
+    connectorEndpoint: 'https://dummy-connector/api/v1/dsp',
+    participantId: 'BPNL1234XX.DUMMY',
+    creatorOrganizationName: 'Dummy Org',
+    isOwnConnector: false,
+  });
+
+  export function toDummyAsset(entry: UiAsset): UiAsset {
+    return {
+      assetId: entry.assetId,
+      title: entry.assetId,
+      participantId: entry.participantId,
+      connectorEndpoint: entry.connectorEndpoint,
+      creatorOrganizationName: entry.participantId,
+      isOwnConnector: entry.isOwnConnector,
+      dataSourceAvailability: 'LIVE',
+    };
+  }
+}
